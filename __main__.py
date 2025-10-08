@@ -35,7 +35,7 @@ for conference_id in ["E", "W"]:
         standings[team_name_element.a.string] = {"wins": wins, "losses": losses}
 
 json_str = json.dumps(standings, indent=4)
-file_name = f"standings_{season_end_year - 1}-{season_end_year}.json"
+file_name = f".data/standings_{season_end_year - 1}-{season_end_year}.json"
 
 with open(file_name, "w") as f:
     f.write(json_str)
