@@ -5,8 +5,6 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
-from s3 import upload_file
-
 load_dotenv()
 season_end_year = int(os.getenv("SEASON_END_YEAR"))
 
@@ -39,6 +37,3 @@ file_name = f".data/standings_{season_end_year - 1}-{season_end_year}.json"
 
 with open(file_name, "w") as f:
     f.write(json_str)
-
-bucket_name = os.getenv("S3_BUCKET_NAME")
-upload_file(file_name, bucket_name)
