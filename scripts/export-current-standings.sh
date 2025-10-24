@@ -3,9 +3,13 @@
 echo
 echo "**** START: `date`"
 
+echo "Change directory to scrape project..."
+cd /home/dcawsey/dev/repo/scrape-nba-standings
+pwd
+
 echo "Loading environment variables from .env file..."
 set -a; source .env; set +a
-echo "Environment variables load status: $?"
+echo "Env variables status: $?"
 
 echo "Activating virtual environment and scraping NBA standings..."
 source .venv/bin/activate
