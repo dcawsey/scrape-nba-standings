@@ -6,13 +6,11 @@ echo "**** START: `date`"
 echo "Change directory to scrape project..."
 cd /home/dcawsey/dev/repo/scrape-nba-standings
 pwd
+. ./.env
+echo "Loaded env variables status: $?"
 
-echo "Loading environment variables from .env file..."
-set -a; source .env; set +a
-echo "Env variables status: $?"
-
-echo "Activating virtual environment and scraping NBA standings..."
-source .venv/bin/activate
+echo "Scraping NBA standings..."
+. .venv/bin/activate
 python .
 echo "Scraping status: $?"
 deactivate
@@ -20,8 +18,9 @@ deactivate
 SEASON_START_YEAR=$((SEASON_END_YEAR - 1))
 
 SEASON_PERIOD="$SEASON_START_YEAR-$SEASON_END_YEAR"
+echo $SEASON_PERIOD
 FILENAME='standings'
 
 echo "Exporting current standings to nba-skins-draft-results repo..."
-cp -nf ".data/${FILENAME}_${SEASON_PERIOD}.json" "../nba-skins-draft-results/src/data/$SEASON_PERIOD/$FILENAME.json"
+cp -f ".data/${FILENAME}_${SEASON_PERIOD}.json" "../nba-skins-draft-results/src/data/$SEASON_PERIOD/$FILENAME.json"
 echo "Copy status: $?"

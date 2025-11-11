@@ -5,13 +5,16 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
+print('Running python script...')
 load_dotenv()
 season_end_year = int(os.getenv("SEASON_END_YEAR"))
+print('Loaded env vars, SEASON_END_YEAR:', season_end_year)
 
 url = (
     f"https://www.basketball-reference.com/leagues/NBA_{season_end_year}_standings.html"
 )
 response = requests.get(url)
+print('Fetch standings HTML response:', response.status_code)
 
 if response.status_code != 200:
     print("Unable to fetch web page:", url)
