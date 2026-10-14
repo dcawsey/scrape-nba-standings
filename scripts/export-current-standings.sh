@@ -10,10 +10,8 @@ pwd
 echo "Loaded env variables status: $?"
 
 echo "Scraping NBA standings..."
-. .venv/bin/activate
-python .
+uv run .
 echo "Scraping status: $?"
-deactivate
 
 SEASON_START_YEAR=$((SEASON_END_YEAR - 1))
 
